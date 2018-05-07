@@ -1,5 +1,5 @@
 
-Demo https://www.youtube.com/watch?v=C-wPA67qqL8
+[Demo](https://www.youtube.com/watch?v=C-wPA67qqL8)
 1. This is a demo of an encapsulated simple-form component, <simple-form>
 2. The usage is like <simple-form [form]="form" [buttonGroup]="buttonGroup"></simple-form>
 3. By binding its form and buttonGroup attribute, it will renders the form automatically.
