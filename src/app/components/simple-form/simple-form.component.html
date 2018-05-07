@@ -1,0 +1,45 @@
+<form *ngIf="show" nz-form #f [formGroup]="formGroup">
+    <nz-form-item *ngFor="let component of form">
+        <nz-form-label [nzSpan]="component.labelSpan || 7">{{component.label}}</nz-form-label>
+        <nz-form-control [nzSpan]="component.controlSpan || 12">
+            <input *ngIf="component.type === ComponentType.Text" nz-input [formControlName]="component.controlName" [placeholder]="component.placeholder || ''">
+            <textarea *ngIf="component.type === ComponentType.TextArea" nz-input [formControlName]="component.controlName" [rows]="component.rows || 4" [placeholder]="component.placeholder || ''"></textarea>
+            <nz-input-number *ngIf="component.type === ComponentType.Number" [formControlName]="component.controlName"></nz-input-number>
+            <nz-radio-group *ngIf="component.type === ComponentType.RadioGroup" [formControlName]="component.controlName">
+                <label *ngFor="let option of component.options" nz-radio [nzValue]="option.value">{{option.label}}</label>
+            </nz-radio-group>
+            <nz-rate *ngIf="component.type === ComponentType.Rate" [formControlName]="component.controlName" [nzAllowHalf]="component.allowHalf || false "></nz-rate>
+            <nz-select *ngIf="component.type === ComponentType.Select" [formControlName]="component.controlName" [nzMode]="component.multiple?'multiple':'default'" [nzPlaceHolder]="component.placeholder || ''" [nzOpen]="false">
+                <nz-option *ngFor="let option of component.options" [nzValue]="option.value" [nzLabel]="option.label"></nz-option>
+            </nz-select>
+            <nz-slider *ngIf="component.type === ComponentType.Slider" [formControlName]="component.controlName" [nzMax]="component.max || 100" [nzMin]="component.min || 0"
+                [nzStep]="component.step || 1" [nzRange]="component.range || false" [nzMarks]="component.marks"></nz-slider>
+            <nz-switch *ngIf="component.type === ComponentType.Switch" [formControlName]="component.controlName"></nz-switch>
+            <input *ngIf="component.type === ComponentType.DatePicker" type="date" [formControlName]="component.controlName" [placeholder]="component.placeholder || ''">
+            <nz-time-picker *ngIf="component.type === ComponentType.TimePicker" [formControlName]="component.controlName" [nzFormat]="component.format || 'HH:mm'"
+                [nzPlaceHolder]="component.placeholder || ''" style="width:200px"></nz-time-picker>
+            <nz-upload *ngIf="component.type === ComponentType.Upload" [nzMultiple]="component.multiple || false" nzListType="picture" nzAction="https://jsonplaceholder.typicode.com/posts/">
+                <button nz-button>
+                    <i class="anticon anticon-upload"></i>
+                    <span>{{component.placeholder}}</span>
+                </button>
+            </nz-upload>
+            <div *ngIf="(formGroup.get(component.controlName).dirty || submitted) && formGroup.get(component.controlName).errors && component.errorMessage">
+                <span *ngFor="let errorKey of component.errorMessage | objectKeys">
+                    <p *ngIf="formGroup.get(component.controlName).hasError(errorKey)" style="color:red">{{component.errorMessage[errorKey]}}</p>
+                </span>
+            </div>
+            <!-- wait until <nz-form-explain is fixed> by ng-zorror -->
+            <!-- <nz-form-explain *ngIf="formGroup.get(component.controlName).dirty  || submitted && formGroup.get(component.controlName).errors && component.errorMessage">
+                <ng-container *ngFor="let errorKey of component.errorMessage | objectKeys">
+                    <span *ngIf="formGroup.get(component.controlName).hasError(errorKey)">{{component.errorMessage[errorKey]}}</span>
+                </ng-container>
+            </nz-form-explain> -->
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item *ngIf="buttonGroup">
+        <nz-form-control [nzSpan]="buttonGroup.span || 14" [nzOffset]="buttonGroup.offset || 8" >
+            <button style="margin-right: 20px" *ngFor="let button of buttonGroup.buttons" nz-button [nzType]="button.type || 'default'" [nzSize]="button.size || 'default'" (click)="button.handler(formGroup.value)">{{button.text}}</button>
+        </nz-form-control>
+    </nz-form-item>
+</form>

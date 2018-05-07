@@ -1,0 +1,11 @@
+<h1> Simple Form Example </h1>
+<simple-form [form]="form" [buttonGroup]="buttonGroup"></simple-form>
+<div *ngIf="showFormValue">
+  <h3>Form Value</h3>
+  <nz-list [nzDataSource]="formValueData" nzBordered [nzRenderItem]="item">
+    <ng-template #item let-item>
+      <nz-list-item style="text-align: center" [nzContent]="item"></nz-list-item>
+    </ng-template>
+  </nz-list>
+</div>
+
