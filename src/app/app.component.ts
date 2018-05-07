@@ -35,6 +35,7 @@ export class AppComponent {
         placeholder: 'Please enter your email!',
         validators: EmailValidator,
         errorMessage: {
+          required: 'Email can not be empty!',
           email: 'Email fomat is incorrect!',
         }
       },
