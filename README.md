@@ -5,7 +5,8 @@
 3. By binding its form and buttonGroup attribute, it will renders the form automatically.
 4. The component is in src/app/components/simple-form.
 5. The model definition of "form" and "buttonGroup" is in src/app/models/form-models.ts
-6. Clone this repository and go into the directory in terminal, type the following command:  
+---
+Clone this repository and go into the directory in terminal, type the following command:  
 `npm install`  
 `ng serve`
 
