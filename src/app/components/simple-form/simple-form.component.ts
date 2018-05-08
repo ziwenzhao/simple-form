@@ -22,8 +22,7 @@ export class SimpleForm {
     @Output() private action = new EventEmitter();
 
     constructor(
-        private fb: FormBuilder,
-        private _message: NzMessageService
+        private fb: FormBuilder
     ) { 
 
     }

@@ -166,8 +166,4 @@ export class AppComponent {
       ]
     }
   }
-  onClick(){
-    this.showFormValue = false;
-  }
-
 }
